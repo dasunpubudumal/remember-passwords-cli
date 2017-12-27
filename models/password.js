@@ -60,26 +60,32 @@ const showPassword = (website, secretKey) => {
 //Remove a password
 const removePassword = (website, secretKey) => {
     Password.findOne({'website': website}, (err, password) => {
-        if(err) throw err;
-        password.remove((err) => {
+        if(!password){console.log("Incorrect Information!"); db.close();}
+        else{
+            if(err) throw err;
+            password.remove((err) => {
             if(err) throw err;
             console.log("Password Removed.");
             db.close();
         });
-    })
+        }
+    });
 };
 
 //Update password
 const editPassword = (website, password, newPassword, secretKey) => {
     Password.findOne({'website': website}, (err, password) => {
         if(err) throw err;
-        password.password = CryptoJS.AES.encrypt(newPassword, secretKey);
-        password.website = website;
-        password.save((err) => {
+        if(!password){console.log("Incorrect Information!");db.close();}
+        else{
+            password.password = CryptoJS.AES.encrypt(newPassword, secretKey);
+            password.website = website;
+            password.save((err) => {
             if(err) throw err;
             console.log("Password updated.");
             db.close();
         });
+        }
     });
 };
 
