@@ -4,6 +4,8 @@ This is a simple password storage Commandline Interface created using `NodeJs`.
 
 ## How to install?
 
+### Note - You need MongoDB installed and started to run this CLI.
+
 1. Clone the repository.
 2. Run `npm install` in the project directory to install the dependencies.
 3. Run `npm link` to create a _Symlink_. If you are using UNIX shells, (Linux or Macintosh) use `sudo npm link` to give administrator priviledges when creating the symlink.
