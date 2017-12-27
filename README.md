@@ -33,6 +33,8 @@ This is a simple password storage Commandline Interface created using `NodeJs`.
 * Updating passwords can be done via `ph edit` .
 * Showing a password can be done via `ph show` .
 
+ Just type whatever the command that you want to enter (Say `ph add`) and hit enter. It will ask questions and answer them appropriately.
+
 ### Note - You can use Aliases as well. 
 For an example, you can use `ph a` instead of `ph add` .
 
