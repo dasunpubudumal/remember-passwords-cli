@@ -36,8 +36,20 @@ const showPassword = (website, secretKey) => {
         console.log('Password for ' + website + ' is ' + decrypt + " .");
         db.close();
     });
-}
+};
 
-module.exports = {addPassword, showPassword}
+//Remove a password
+const removePassword = (website, secretKey) => {
+    Password.findOne({'website': website}, (err, password) => {
+        if(err) throw err;
+        password.remove((err) => {
+            if(err) throw err;
+            console.log("Password Removed.");
+            db.close();
+        });
+    })
+};
+
+module.exports = {addPassword, showPassword, removePassword}
 
 
