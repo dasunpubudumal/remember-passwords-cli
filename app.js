@@ -50,6 +50,19 @@ const removePassword = (website, secretKey) => {
     })
 };
 
-module.exports = {addPassword, showPassword, removePassword}
+const editPassword = (website, password, newPassword, secretKey) => {
+    Password.findOne({'website': website}, (err, password) => {
+        if(err) throw err;
+        password.password = CryptoJS.AES.encrypt(newPassword, secretKey);
+        password.website = website;
+        password.save((err) => {
+            if(err) throw err;
+            console.log("Passwor updated.");
+            db.close();
+        });
+    });
+};
+
+module.exports = {addPassword, showPassword, removePassword, editPassword}
 
 

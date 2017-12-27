@@ -1,5 +1,5 @@
 const program = require('commander');
-const {addPassword, showPassword, removePassword} = require('./app');
+const {addPassword, showPassword, removePassword, editPassword} = require('./app');
 
 //Version check.
 program
@@ -31,5 +31,13 @@ program
     .description('Remove a password')
     .action((website, password) => {
         removePassword(website, password);
+    });
+
+program
+    .command('update <website> <password> <newPassword> <secret>')
+    .alias('u')
+    .description('Update a password')
+    .action((website, password, newPassword, secret) => {
+        editPassword(website, password, newPassword, secret);
     });
 program.parse(process.argv);
