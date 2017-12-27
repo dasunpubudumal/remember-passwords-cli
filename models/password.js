@@ -68,7 +68,7 @@ const removePassword = (website, secretKey) => {
             if(err) throw err;
             password.remove((err) => {
             if(err) throw err;
-            console.log("HashModel Removed.");
+            console.log("Password Removed.");
             db.close();
         });
         }
