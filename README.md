@@ -1,6 +1,6 @@
 # Password Hash Storage CLI
 
-This is a simple password storage Commandline Interface created using `NodeJs`.
+This is a simple password storage Commandline Interface created using `NodeJs`. For more information about this, you can refer to my [blogpost](https://dasunpubudu.wordpress.com/2017/12/27/password-storage-cli/)
 
 ## How to install?
 

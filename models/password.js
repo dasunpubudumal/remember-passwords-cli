@@ -61,7 +61,6 @@ const showPassword = (website, secretKey) => {
                 db.close();
             }
         }
-       
     });
 };
 
