@@ -1,7 +1,7 @@
 {
   "name": "ph",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a simple application through which you can remember passwords which are stored in your local MongoDB database.",
   "main": "app.js",
   "preferGlobal": true,
   "bin": "./commander.js",
