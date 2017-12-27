@@ -32,10 +32,10 @@ const addPassword = (website ,password, secretKey) => {
         console.log("Cannot provide empty details.");
         db.close(); //To end the hanging cycle.
     } else {
-        const encrypt = new HashModel();
-        encrypt.password = CryptoJS.AES.encrypt(password, secretKey);
-        encrypt.website = website.toLowerCase();
-        encrypt.save((err) => {
+        const hashModel = new HashModel();
+        hashModel.password = CryptoJS.AES.encrypt(password, secretKey);
+        hashModel.website = website.toLowerCase();
+        hashModel.save((err) => {
             if(err) throw err;
             console.log("Successfully added to the database.");
             db.close();
