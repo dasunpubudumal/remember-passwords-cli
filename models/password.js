@@ -27,7 +27,7 @@ const Password  = mongoose.model('Password', PasswordModel);
 const addPassword = (website ,password, secretKey) => {
     const encrypt = new Password();
     encrypt.password = CryptoJS.AES.encrypt(password, secretKey);
-    encrypt.website = website;
+    encrypt.website = website.toLowerCase();
     encrypt.save((err) => {
         if(err) throw err;
         console.log("Successfully added to the database.");
@@ -37,7 +37,7 @@ const addPassword = (website ,password, secretKey) => {
 
 //View a password
 const showPassword = (website, secretKey) => {
-    Password.findOne({'website': website}, (err, password) => {
+    Password.findOne({'website': website.toLowerCase()}, (err, password) => {
         if(err) throw err;
         if(!password) {console.log('Incorrect Information!'); db.close();}
         else{
@@ -75,7 +75,7 @@ const removePassword = (website, secretKey) => {
 
 //Update password
 const editPassword = (website, password, newPassword, secretKey) => {
-    Password.findOne({'website': website}, (err, password) => {
+    Password.findOne({'website': website.toLowerCase()}, (err, password) => {
         if(err) throw err;
         if(!password){console.log("Incorrect Information!");db.close();}
         else{
