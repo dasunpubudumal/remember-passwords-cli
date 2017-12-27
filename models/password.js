@@ -39,11 +39,21 @@ const addPassword = (website ,password, secretKey) => {
 const showPassword = (website, secretKey) => {
     Password.findOne({'website': website}, (err, password) => {
         if(err) throw err;
-        const bytes  = CryptoJS.AES.decrypt(password.password.toString(), 
-        secretKey);
-        const decrypt = bytes.toString(CryptoJS.enc.Utf8);
-        console.log('Password for ' + website + ' is ' + decrypt + " .");
-        db.close();
+        if(!password) {console.log('Incorrect Information!'); db.close();}
+        else{
+            const bytes  = CryptoJS.AES.decrypt(password.password.toString(), 
+            secretKey);
+            const decrypt = bytes.toString(CryptoJS.enc.Utf8);
+            if(decrypt == '' || decrypt == null) {
+                console.log("Incorrect Information!");
+                db.close();
+            } 
+            else{
+                console.log('Password for ' + website + ' is ' + decrypt + " .");
+                db.close();
+            }
+        }
+       
     });
 };
 
