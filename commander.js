@@ -2,7 +2,7 @@
 
 const program = require('commander');
 const {prompt} = require('inquirer');
-const {addPassword, showPassword, removePassword, editPassword} = require('./models/password');
+const {addPassword, showPassword, removePassword, editPassword, showAllRecords} = require('./models/password');
 const {AddInquiries,EditInquiries, RemoveInquiries, ShowInquiries} = require('./inquiries');
 
 //Version check.
@@ -46,5 +46,12 @@ program
         prompt(EditInquiries).then( answers => editPassword(answers.website, answers.password, answers.newPassword, answers.secretKey
         ));
     });
+
+//Show all records
+program
+    .command('everything')
+    .alias('e')
+    .description('Show Everything')
+    .action(() => { showAllRecords() });
 
 program.parse(process.argv);

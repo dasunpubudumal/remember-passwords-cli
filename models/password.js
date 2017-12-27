@@ -92,5 +92,14 @@ const editPassword = (website, password, newPassword, secretKey) => {
     });
 };
 
-module.exports = {addPassword, editPassword, showPassword, removePassword}
+//Display all records in collection.
+const showAllRecords = () => {
+    HashModel.find({},(err, docs) => {
+        if(err) throw err;
+        console.log(JSON.stringify(docs, null, 5));
+        db.close();
+    });
+};
+
+module.exports = {addPassword, editPassword, showPassword, removePassword, showAllRecords}
 
