@@ -35,13 +35,11 @@ program
         prompt(RemoveInquiries).then( answers => removePassword(answers.website, answers.secretKey));
     });
 
+//Edit password
 program
     .command('edit')
     .alias('u')
     .description('Edit a password')
-    // .action((website, password, newPassword, secret) => {
-    //     editPassword(website, password, newPassword, secret);
-    // });
     .action(() => {
         prompt(EditInquiries).then( answers => editPassword(answers.website, answers.password, answers.newPassword, answers.secretKey
         ));
