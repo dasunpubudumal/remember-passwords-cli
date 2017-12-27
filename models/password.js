@@ -1,5 +1,6 @@
 //Mongodb ORM
 const mongoose = require('mongoose');
+const inquirer = require('inquirer');
 
 mongoose.Promise = global.Promise;  //Just to remove the warning
 
@@ -17,7 +18,7 @@ const PasswordModel = mongoose.Schema(
 );
 
 //Used to encrypt-dectrypt passwords.
-var CryptoJS = require("crypto-js");
+const CryptoJS = require("crypto-js");
 
 //Password Model through which we access the database.
 const Password  = mongoose.model('Password', PasswordModel);
@@ -66,7 +67,7 @@ const editPassword = (website, password, newPassword, secretKey) => {
         password.website = website;
         password.save((err) => {
             if(err) throw err;
-            console.log("Passwor updated.");
+            console.log("Password updated.");
             db.close();
         });
     });
