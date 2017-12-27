@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "preferGlobal": true,
-  "bin" : "./commander.js",
+  "bin": "./commander.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

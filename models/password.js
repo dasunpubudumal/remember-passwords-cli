@@ -10,7 +10,8 @@ const db = mongoose.connect('mongodb://localhost:27017/passwordhash',
         useMongoClient: true
 });
 
-const PasswordModel = mongoose.Schema(
+//Schema
+const HashSchema = mongoose.Schema(
     {
         website: {type: String},
         password: {type: String}
@@ -20,12 +21,13 @@ const PasswordModel = mongoose.Schema(
 //Used to encrypt-dectrypt passwords.
 const CryptoJS = require("crypto-js");
 
-//Password Model through which we access the database.
-const Password  = mongoose.model('Password', PasswordModel);
+//HashModel Model through which we access the database.
+//First Parameter is the collection in the database.
+const HashModel  = mongoose.model('Password', HashSchema);
 
 //Add a password
 const addPassword = (website ,password, secretKey) => {
-    const encrypt = new Password();
+    const encrypt = new HashModel();
     encrypt.password = CryptoJS.AES.encrypt(password, secretKey);
     encrypt.website = website.toLowerCase();
     encrypt.save((err) => {
@@ -37,7 +39,7 @@ const addPassword = (website ,password, secretKey) => {
 
 //View a password
 const showPassword = (website, secretKey) => {
-    Password.findOne({'website': website.toLowerCase()}, (err, password) => {
+    HashModel.findOne({'website': website.toLowerCase()}, (err, password) => {
         if(err) throw err;
         if(!password) {console.log('Incorrect Information!'); db.close();}
         else{
@@ -49,7 +51,7 @@ const showPassword = (website, secretKey) => {
                 db.close();
             } 
             else{
-                console.log('Password for ' + website + ' is ' + decrypt + " .");
+                console.info('Password for ' + website + ' is ' + decrypt + ".");
                 db.close();
             }
         }
@@ -59,14 +61,14 @@ const showPassword = (website, secretKey) => {
 
 //Remove a password
 const removePassword = (website, secretKey) => {
-    Password.findOne({'website': website}, (err, password) => {
+    HashModel.findOne({'website': website}, (err, password) => {
         if(err) throw err;
         if(!password){console.log("Incorrect Information!"); db.close();}
         else{
             if(err) throw err;
             password.remove((err) => {
             if(err) throw err;
-            console.log("Password Removed.");
+            console.log("HashModel Removed.");
             db.close();
         });
         }
@@ -75,9 +77,9 @@ const removePassword = (website, secretKey) => {
 
 //Update password
 const editPassword = (website, password, newPassword, secretKey) => {
-    Password.findOne({'website': website.toLowerCase()}, (err, password) => {
+    HashModel.findOne({'website': website.toLowerCase()}, (err, password) => {
         if(err) throw err;
-        if(!password){console.log("Incorrect Information!");db.close();}
+        if(!password){console.log("Incorrect Information!"); db.close();}
         else{
             password.password = CryptoJS.AES.encrypt(newPassword, secretKey);
             password.website = website;
