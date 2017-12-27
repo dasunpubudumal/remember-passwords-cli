@@ -8,13 +8,14 @@ mongoose.Promise = global.Promise;  //Just to remove the warning
 const db = mongoose.connect('mongodb://localhost:27017/passwordhash',
     {
         useMongoClient: true
-});
+    }
+);
 
 //Schema
 const HashSchema = mongoose.Schema(
     {
-        website: {type: String},
-        password: {type: String}
+        website: {type: String, required: [true, 'Website is required']},
+        password: {type: String, required: [true, 'A password must be there to']}
     }
 );
 
@@ -27,14 +28,19 @@ const HashModel  = mongoose.model('Password', HashSchema);
 
 //Add a password
 const addPassword = (website ,password, secretKey) => {
-    const encrypt = new HashModel();
-    encrypt.password = CryptoJS.AES.encrypt(password, secretKey);
-    encrypt.website = website.toLowerCase();
-    encrypt.save((err) => {
-        if(err) throw err;
-        console.log("Successfully added to the database.");
-        db.close();
-    });
+    if(website.trim() == "" || password.trim() == ""){
+        console.log("Cannot provide empty details.");
+        db.close(); //To end the hanging cycle.
+    } else {
+        const encrypt = new HashModel();
+        encrypt.password = CryptoJS.AES.encrypt(password, secretKey);
+        encrypt.website = website.toLowerCase();
+        encrypt.save((err) => {
+            if(err) throw err;
+            console.log("Successfully added to the database.");
+            db.close();
+        });
+    }
 };
 
 //View a password
