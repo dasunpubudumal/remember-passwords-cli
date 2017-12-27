@@ -60,6 +60,7 @@ const showPassword = (website, secretKey) => {
 //Remove a password
 const removePassword = (website, secretKey) => {
     Password.findOne({'website': website}, (err, password) => {
+        if(err) throw err;
         if(!password){console.log("Incorrect Information!"); db.close();}
         else{
             if(err) throw err;
