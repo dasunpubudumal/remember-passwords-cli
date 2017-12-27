@@ -23,10 +23,15 @@ This is a simple password storage Commandline Interface created using `NodeJs`.
     edit | u     Edit a password
 
 ```
+
 ## Examples
 
 * Adding a password can be done via `ph add` .
 * Removing a password can be done via `ph remove` .
 * Updating passwords can be done via `ph edit` .
 * Showing a password can be done via `ph show` .
+
+### Note - You can use Aliases as well. 
+For an example, you can use `ph a` instead of `ph add` .
+
 
