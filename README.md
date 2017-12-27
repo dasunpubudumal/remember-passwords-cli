@@ -13,6 +13,7 @@ This is a simple password storage Commandline Interface created using `NodeJs`.
 
 ## How to use?
 
+* You can get help by running `ph --help` command.
 * You can call the CLI using **ph** command. (Just like **ng** in Angular)
 * There are four primary commands. 
 
