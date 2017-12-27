@@ -50,6 +50,7 @@ const removePassword = (website, secretKey) => {
     })
 };
 
+//Update password
 const editPassword = (website, password, newPassword, secretKey) => {
     Password.findOne({'website': website}, (err, password) => {
         if(err) throw err;

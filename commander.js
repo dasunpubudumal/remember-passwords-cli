@@ -34,9 +34,9 @@ program
     });
 
 program
-    .command('update <website> <password> <newPassword> <secret>')
+    .command('edit <website> <password> <newPassword> <secret>')
     .alias('u')
-    .description('Update a password')
+    .description('Edit a password')
     .action((website, password, newPassword, secret) => {
         editPassword(website, password, newPassword, secret);
     });
