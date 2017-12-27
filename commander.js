@@ -1,5 +1,5 @@
 const program = require('commander');
-const {addPassword, showPassword, removePassword, editPassword} = require('./app');
+const {addPassword, showPassword, removePassword, editPassword} = require('./models/password');
 
 //Version check.
 program
