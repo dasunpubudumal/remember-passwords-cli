@@ -22,6 +22,7 @@ This is a simple password storage Commandline Interface created using `NodeJs`.
     show | s     Show a password
     remove | r   Remove a password
     edit | u     Edit a password
+    everything|e Show Everything
 
 ```
 
